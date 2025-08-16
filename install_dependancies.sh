@@ -56,6 +56,7 @@ mount -t devpts none $1/dev/pts
 mount -o bind,ro /etc/resolv.conf $1/run/resolvconf/resolv.conf
 
 # enter chroot
+chroot $1 /bin/bash -c "echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf > /dev/null"
 chroot $1 /bin/bash -c "cd /usr/bin && rm which && ln -s which.debianutils which"
 chroot $1 /bin/bash -c "apt-get update"
 chroot $1 /bin/bash -c "apt install -y openjdk-17-jdk"
