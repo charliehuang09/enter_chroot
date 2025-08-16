@@ -58,13 +58,13 @@ mount -o bind,ro /etc/resolv.conf $1/run/resolvconf/resolv.conf
 # enter chroot
 chroot $1 /bin/bash -c "echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf > /dev/null"
 chroot $1 /bin/bash -c "cd /usr/bin && rm which && ln -s which.debianutils which"
-chroot $1 /bin/bash -c "apt-get update"
-chroot $1 /bin/bash -c "apt install -y openjdk-17-jdk"
-chroot $1 /bin/bash -c "apt install -y ninja-build"
-chroot $1 /bin/bash -c "apt install -y protobuf-compiler"
-chroot $1 /bin/bash -c "apt install -y libxrandr-dev"
-chroot $1 /bin/bash -c "apt install -y libssh-dev"
-chroot $1 /bin/bash -c "apt install -y libopencv4.5-java"
+chroot $1 /bin/bash -c "sudo chmod 1777 /tmp && apt-get update"
+#chroot $1 /bin/bash -c "apt install -y openjdk-17-jdk"
+#chroot $1 /bin/bash -c "apt install -y ninja-build"
+#chroot $1 /bin/bash -c "apt install -y protobuf-compiler"
+#chroot $1 /bin/bash -c "apt install -y libxrandr-dev"
+#chroot $1 /bin/bash -c "apt install -y libssh-dev"
+#chroot $1 /bin/bash -c "apt install -y libopencv4.5-java"
 
 # unmount special filesystems
 umount $1/sys
